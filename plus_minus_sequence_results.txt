@@ -10,6 +10,8 @@ Verified conjectures:
 4. All odd numbers after eleven are not congruent to 0 or 1 mod 11
 5. All odd numbers after three are congruent to 11 mod 12
 
+6. All odd numbers after three are congruent to 11 or 23 mod 24
+
 Plus Minus Sequence (Output Sequence):
 
 2 3 4 8 11 16 32 35 47 59

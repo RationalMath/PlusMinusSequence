@@ -67,6 +67,9 @@ fn main() {
     all_odd_numbers_after_3_are_11_mod_12(&output_sequence);
     println!("Conjecture 5: All odd numbers after three are congruent to 11 mod 12");
 
+    all_odd_numbers_after_3_are_11_or_23_mod_24(&output_sequence);
+    println!("Conjecture 6: All odd numbers after three are congruent to 11 or 23 mod 24");
+
     println!();
 
     // Print the upper limit
@@ -114,6 +117,11 @@ fn main() {
     writeln!(
         file,
         "5. All odd numbers after three are congruent to 11 mod 12\n"
+    )
+    .expect("Failed to write to file");
+    writeln!(
+        file,
+        "6. All odd numbers after three are congruent to 11 or 23 mod 24\n"
     )
     .expect("Failed to write to file");
 
@@ -180,6 +188,17 @@ fn all_odd_numbers_after_3_are_11_mod_12(sequence: &Vec<usize>) {
         if *n > 3 {
             if is_odd(*n) {
                 assert!(*n % 12 == 11);
+            }
+        }
+    }
+}
+
+// Check that all odd numbers after three are congruent to 11 or 23 mod 24
+fn all_odd_numbers_after_3_are_11_or_23_mod_24(sequence: &Vec<usize>) {
+    for n in sequence {
+        if *n > 3 {
+            if is_odd(*n) {
+                assert!(*n % 24 == 11 || *n % 24 == 23);
             }
         }
     }
