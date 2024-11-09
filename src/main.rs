@@ -1,3 +1,4 @@
+use differences::difference_between_all_consecutive_odd_numbers_is_congruent_to_0_mod_12;
 use std::collections::BTreeSet;
 
 fn main() {
@@ -76,9 +77,7 @@ fn main() {
     all_odd_numbers_after_3_are_11_or_23_mod_24(&output_sequence);
     println!("Conjecture 8: All odd numbers after three are congruent to 11 or 23 mod 24");
 
-    differences::difference_between_all_consecutive_odd_numbers_is_congruent_to_0_mod_12(
-        &output_sequence,
-    );
+    difference_between_all_consecutive_odd_numbers_is_congruent_to_0_mod_12(&output_sequence);
     println!(
         "Conjecture 9: The difference between all consecutive odd numbers is congruent to 0 mod 12"
     );
