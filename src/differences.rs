@@ -1,4 +1,4 @@
-use crate::is_odd;
+use crate::helpers::is_odd;
 
 // Check that the difference between all consecutive odd numbers is congruent to 0 mod 12
 pub fn difference_between_all_consecutive_odd_numbers_is_congruent_to_0_mod_12(
