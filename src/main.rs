@@ -1,9 +1,11 @@
-use differences::*;
-use fs::save_to_file;
-use mod_conjectures::*;
-use plus_minus_sequence::generate_plus_minus_sequence;
+use plus_minus_sequence::differences::*;
+use plus_minus_sequence::fs::save_to_file;
+use plus_minus_sequence::mod_conjectures::*;
+use plus_minus_sequence::plus_minus_sequence::generate_plus_minus_sequence;
 
 fn main() {
+    let now = std::time::Instant::now();
+
     // Get the upper limit n from the command line or default to 1,000,000
     let n = std::env::args()
         .nth(1)
@@ -45,6 +47,9 @@ fn main() {
 
     println!();
 
+    let elapsed = now.elapsed();
+    println!("Time elapsed: {:?}", elapsed);
+
     // Print the upper limit
     println!("Upper limit: {}", n);
 
@@ -56,9 +61,3 @@ fn main() {
 
     save_to_file(n, &output_sequence, "plus_minus_sequence_results.txt");
 }
-
-mod differences;
-mod fs;
-mod helpers;
-mod mod_conjectures;
-mod plus_minus_sequence;

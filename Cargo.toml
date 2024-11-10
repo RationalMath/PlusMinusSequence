@@ -3,4 +3,15 @@ name = "plus-minus-sequence"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+
+[[bin]]
+name = "mt"
+description = "Multi-threaded Plus-Minus Sequence"
+path = "src/bin/mt.rs"
+
+[[bin]]
+name = "threads"
+path = "src/bin/threads.rs"
+
 [dependencies]
