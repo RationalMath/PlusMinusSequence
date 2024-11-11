@@ -1,8 +1,6 @@
-use std::collections::BTreeSet;
-
 pub fn generate_plus_minus_sequence(n: usize) -> Vec<usize> {
     // Create the working sequence of numbers 2 to n
-    let mut working_sequence: BTreeSet<usize> = (2..=n).collect();
+    let mut working_sequence: Vec<usize> = (2..=n).collect();
 
     // Create the empty output sequence
     let mut output_sequence: Vec<usize> = Vec::new();
@@ -10,7 +8,14 @@ pub fn generate_plus_minus_sequence(n: usize) -> Vec<usize> {
     // Loop until the working sequence is empty
     while !working_sequence.is_empty() {
         // Pop the first element from the working sequence
-        let mut x = working_sequence.pop_first().expect("Sequence is empty");
+        let (index, &x) = working_sequence
+            .iter()
+            .enumerate()
+            .find(|(_, &val)| val != 0)
+            .unwrap();
+
+        let mut x = x;
+        working_sequence[index] = 0;
 
         // Add the first element to the output sequence
         output_sequence.push(x);
@@ -30,7 +35,7 @@ pub fn generate_plus_minus_sequence(n: usize) -> Vec<usize> {
             }
 
             // Remove x from the working sequence
-            working_sequence.remove(&x);
+            working_sequence[x] = 0;
 
             // Increment x by x_minus_one
             x += x_minus_one;
@@ -41,7 +46,7 @@ pub fn generate_plus_minus_sequence(n: usize) -> Vec<usize> {
             }
 
             // Remove x from the working sequence
-            working_sequence.remove(&x);
+            working_sequence[x] = 0;
         }
     }
 
