@@ -1,0 +1,9 @@
+{
+    "githubPullRequests.remotes": [
+        "PlusMinusSequence"
+    ],
+    "githubPullRequests.defaultMergeMethod": "squash",
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
+}
