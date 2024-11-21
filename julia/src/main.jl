@@ -1,5 +1,4 @@
 include("PlusMinusSequence.jl")
-using .PlusMinusSequence: generate_plus_minus_sequence
 using Statistics
 using Plots
 using Plots: px
@@ -18,15 +17,13 @@ slope_avg = mean([Se4[i+1] - Se4[i] for i in 1:length(Se4)-1])
 constant_line_data = [slope_avg * i for i in 1:length(Se4)]
 
 # Differences between consecutive elements of S
-differences = [S[i+1] - S[i] for i in 1:length(S)-1]
+differences = [S[i+1] - S[i] for i in 1:1000]
+differences2 = [S[i+1] - S[i] for i in 1:length(S)-1]
 
 window_size = 1000
-diff_moving_avg = [mean(differences[i:i+window_size]) for i in 1:length(differences)-window_size]
+diff_moving_avg = [mean(differences2[i:i+window_size]) for i in 1:length(differences2)-window_size]
 
-constant_line_12 = [12 for i in 1:length(differences)]
-plot!(constant_line_12, label = "y = 12", color = :red, opacity = 0.5, linewidth = 3)
-
-sub_title_size = 8
+sub_title_size = 18
 
 plot1 = scatter(
 	S100,
@@ -36,7 +33,7 @@ plot1 = scatter(
  	ylabel = "Sequence value",
  	labelfontsize = 8,
  	legend = false,
- 	titlefont = (sub_title_size, "Helvetica", :blue),
+	titlefont = (sub_title_size, "Helvetica", :blue),
 )
 
 plot2 = plot(
@@ -69,6 +66,7 @@ plot4 = plot(diff_moving_avg,
 	ylabel = "Difference",
 	labelfontsize = 8,
 	titlefont = (sub_title_size, "Helvetica", :blue),
+	legend =  false,
 )
 
 plot5 = plot(differences,
@@ -78,7 +76,18 @@ plot5 = plot(differences,
 	labelfontsize = 8,
 	titlefont = (sub_title_size, "Helvetica", :blue),
 	label = "Difference",
+	legend = false,
 )
+
+plot6 = plot(differences2,
+	title = "First $(length(differences2)) differences",
+	xlabel = "nth difference",
+	ylabel = "Difference",
+	labelfontsize = 8,
+	titlefont = (sub_title_size, "Helvetica", :blue),
+	label = false,
+)
+hline!([12], label="12", color = :red, linewidth = 2, linestyle = :dash)
 
 num_plots = 5
 plot_size_x = 600
@@ -86,14 +95,14 @@ plot_size_y = 500
 
 main_title_size = 12
 
-layout = @layout [a; b; c; d; e]
+layout = @layout [a; b; c; d; e; f]
 
-plot(plot1, plot2, plot3, plot4, plot5,
+plot(plot1, plot2, plot3, plot4, plot5, plot6,
 	layout = layout,
 	size = (plot_size_x, plot_size_y * 4),
 	plot_title = "Plus-Minus Sequence",
 	titlefont = (main_title_size, "Helvetica", :blue),
 	left_margin = 100px,
-	right_margin = 50px,
+	right_margin = 100px,
 	bottom_margin = 25px,
 )

@@ -1,7 +1,3 @@
-module PlusMinusSequence
-
-export generate_plus_minus_sequence
-
 function generate_plus_minus_sequence(n::Int)
 	# Initialize a boolean array to represent the working sequence (numbers 2 to n)
 	in_working_sequence = falses(n)
@@ -52,4 +48,3 @@ function generate_plus_minus_sequence(n::Int)
 	return output_sequence
 end
 
-end
